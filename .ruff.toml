@@ -1,0 +1,8 @@
+# Ruff configuration for flight-delays project
+# See: https://docs.astral.sh/ruff/configuration/
+
+target-version = "py312"
+line-length = 120
+
+[format]
+skip-magic-trailing-comma = true

@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+tasks:
+  default:
+    desc: List all available tasks
+    cmds:
+      - task --list
+
+  setup:
+    desc: Install project dependencies (including dev tools)
+    cmds:
+      - uv sync --all-extras
+
+  run:
+    desc: Run the development server with autoreload
+    cmds:
+      - uv run python -m uvicorn flight_delays_api:app --reload --app-dir src
+
+  test:
+    desc: Run the test suite
+    cmds:
+      - uv run pytest -v
+
+  test-coverage:
+    desc: Run tests with coverage report output
+    cmds:
+      - uv run pytest --cov=src --cov-report=html
+
+  lint:
+    desc: Run static lint checks
+    cmds:
+      - uv run ruff check .
+
+  lint-fix:
+    desc: Auto-fix lint issues where possible
+    cmds:
+      - uv run ruff check --fix .
+
+  format:
+    desc: Format code with Ruff
+    cmds:
+      - uv run ruff format .
+
+  check:
+    desc: Run lint and tests
+    cmds:
+      - task: lint
+      - task: test
+

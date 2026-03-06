@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flight-delays-api"
+description = "REST API for managing flight delay information"
+readme = "README.md"
+requires-python = ">=3.12"
+version = "0.1.0"
+dependencies = [
+    "fastapi~=0.119.0",
+    "pydantic~=2.12.2",
+    "uvicorn[standard]~=0.29.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest~=9.0",
+    "pytest-cov~=7.0",
+    "ruff~=0.14",
+    "httpx~=0.28.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "src"
+]
+testpaths = [
+    "tests"
+]
+
