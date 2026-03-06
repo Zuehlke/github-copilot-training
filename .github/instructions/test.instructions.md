@@ -17,7 +17,6 @@ applyTo: "tests/**/*.py"
 tests/
 ├── conftest.py          # Shared fixtures
 ├── test_items.py        # Tests for items router
-├── test_models.py       # Tests for Pydantic models
 └── data/                # Optional test data files
 ```
 
@@ -157,53 +156,6 @@ def test_create_item_invalid_data_returns_422(test_client):
     response = test_client.post("/items", json=invalid_item)
 
     assert response.status_code == 422
-```
-
-# Model Testing
-
-Test validation logic for Pydantic models.
-
-```python
-import pytest
-from pydantic import ValidationError
-from function_app.models import Item
-
-
-def test_item_model_valid_data():
-
-    item = Item(
-        id="ITEM123",
-        name="Sample item",
-        status="active",
-        created_at="2024-02-28T10:00:00Z"
-    )
-
-    assert item.id == "ITEM123"
-    assert item.status == "active"
-```
-
-```python
-def test_item_model_rejects_missing_name():
-
-    with pytest.raises(ValidationError) as exc_info:
-        Item(
-            id="ITEM123",
-            status="active"
-        )
-
-    assert "name" in str(exc_info.value)
-```
-
-```python
-def test_item_model_requires_id():
-
-    with pytest.raises(ValidationError) as exc_info:
-        Item(
-            name="Sample item",
-            status="active"
-        )
-
-    assert "id" in str(exc_info.value)
 ```
 
 # Parametrized Testing
