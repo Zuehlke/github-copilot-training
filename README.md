@@ -11,7 +11,7 @@ github-copilot-training/
 ├── pyproject.toml                # Project metadata and dependencies
 ├── README.md                     # This file
 ├── src/
-│   └── flight_delays_api/     # Main application
+│   └── flight_delays_api/        # Main application
 │       ├── __init__.py           # FastAPI app setup
 │       ├── models/               # Pydantic models
 │       └── routers/              # API endpoints
