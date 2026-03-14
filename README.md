@@ -80,3 +80,19 @@ task
 - `.github/copilot-instructions.md`
 - `.github/instructions/python.instructions.md`
 - `.github/instructions/testing.instructions.md`
+
+### LAB 4: Agentic Workflow
+
+**Context:** So far you've used Copilot to generate code directly. Now you will enforce an agentic workflow that separates refinement, planning, and implementation to improve quality and predictability.
+
+**Task:**
+- Prepare agents for refine → plan → implement in `.github/agents/`
+- You can reuse the existing handoff-writing and code-and-quality-testing skills in `.github/skills/`.
+- Implement the same endpoints again using the workflow:
+  - `GET /delays` → returns 200 OK or 404 Not Found
+  - `GET /delays/?airline_code=AA&limit=50` → returns 200 OK or 404 Not Found
+
+**Files to create:**
+- `.github/agents/refine.md`
+- `.github/agents/plan.md`
+- `.github/agents/implement.md`
