@@ -1,0 +1,120 @@
+# Plan Handoff: Delays list endpoints
+
+## Summary of refined spec
+
+- Implement `GET /delays` with query inputs `airline_code` and `limit`.
+- Return `200` with a JSON object containing `items` and `count` when matches exist.
+- Return `404` when no records match after applying filters.
+- Apply case-insensitive airline-code filtering.
+- Apply limit when provided; when limit is absent, return all matches.
+- Use airline code derived from the alphabetic prefix of `flight_number`.
+
+## Architectural design
+
+- Components/modules involved:
+  - Router layer in `src/flight_delays_api/routers/` for HTTP contract.
+  - Pydantic models in `src/flight_delays_api/models/` for response typing.
+  - App composition in `src/flight_delays_api/__init__.py` to register the new router.
+  - JSON fixture `data/flights.json` as the data source.
+- Responsibility boundaries:
+  - Router parses query params and maps domain results to HTTP status codes.
+  - Internal helper logic loads records and applies filter/limit rules.
+  - Pydantic models define shape of successful responses.
+- Key interfaces/contracts:
+  - Endpoint: `GET /delays`
+  - Query params: `airline_code: str | None`, `limit: int | None`
+  - Success response: object with `items` (array of delay records) and `count` (int).
+  - Not found response: `404` with error payload following current FastAPI/HTTPException pattern.
+- Data flow/state changes:
+  - Read records from `data/flights.json` per request.
+  - Derive airline code from `flight_number` prefix, normalize to uppercase, filter when `airline_code` present.
+  - Apply `limit` to filtered records when `limit` is present.
+  - If resulting list is empty, raise `404`; else return typed response object.
+- Error handling & edge cases:
+  - Empty dataset -> `404`.
+  - Filtered zero results -> `404`.
+  - Case-insensitive code matching (`aa` equals `AA`).
+  - `limit` omitted -> no truncation.
+  - Invalid query param types continue through existing validation handling (`422`).
+
+## Files likely to change
+
+- `src/flight_delays_api/routers/delays.py` (new)
+- `src/flight_delays_api/routers/__init__.py`
+- `src/flight_delays_api/models/delay.py` (new)
+- `src/flight_delays_api/models/__init__.py`
+- `src/flight_delays_api/__init__.py`
+- `tests/test_delays.py` (new)
+
+## Test implementation plan
+
+### Test files
+- Create `tests/test_delays.py`.
+
+### Test classes
+- Use module-level tests (consistent with current test style).
+
+### Test methods
+- `test_get_delays_returns_200_with_items_and_count`
+- `test_get_delays_returns_404_when_no_records_available` (monkeypatch data loader to return empty list)
+- `test_get_delays_with_airline_code_and_limit_returns_200`
+- `test_get_delays_with_airline_code_is_case_insensitive`
+- `test_get_delays_with_airline_code_and_limit_returns_404_when_no_match`
+- `test_get_delays_documents_query_params_and_response_schema` (validate via `/openapi.json`)
+
+## Code implementation plan
+
+### Source files
+- Add `src/flight_delays_api/models/delay.py`:
+  - model for one delay record mirroring JSON fields.
+  - model for list response object containing `items` and `count`.
+- Add `src/flight_delays_api/routers/delays.py`:
+  - router definition with `GET /delays`.
+  - helper to load and parse `data/flights.json`.
+  - helper to derive airline code from `flight_number` prefix.
+- Update exports and wiring:
+  - `src/flight_delays_api/models/__init__.py` exports delay models.
+  - `src/flight_delays_api/routers/__init__.py` exports `delays_router`.
+  - `src/flight_delays_api/__init__.py` includes `delays_router`.
+
+### Functions/endpoints
+- Create endpoint function in `delays_router` that:
+  - accepts query params `airline_code` and `limit`.
+  - loads records.
+  - applies case-insensitive filtering by derived code.
+  - applies limit when present.
+  - returns typed response with `items` and `count`.
+  - raises `HTTPException(status_code=404, ...)` when result is empty.
+
+### Helpers/utilities
+- Add internal utility to derive airline code from `flight_number` by extracting leading alphabetic characters.
+- Add internal loader utility that resolves the repository data path safely from module location.
+
+## Integration plan
+
+- Integrate new router through existing app composition flow in `src/flight_delays_api/__init__.py`.
+- Preserve current router/module export conventions (`__all__` lists).
+- Keep behavior aligned with global validation and exception handlers in `src/flight_delays_api/exceptions.py`.
+- Rely on FastAPI OpenAPI generation to expose query params and response contract.
+
+## Validation plan
+
+- TDD sequence:
+  1. Write failing tests in `tests/test_delays.py` for all acceptance criteria.
+  2. Implement models and endpoint logic to satisfy tests.
+  3. Run formatting/lint/tests using Taskfile targets.
+- Verification commands:
+  - `task test`
+  - `task test-coverage`
+- Coverage gate:
+  - Ensure added endpoint/model code is covered at or above 80% by `tests/test_delays.py` and existing suite.
+- Manual scenarios:
+  - `GET /delays` with current fixture data -> `200` and non-zero count.
+  - `GET /delays?airline_code=BA&limit=1` -> `200`, count `1`, one matching item.
+  - `GET /delays?airline_code=ZZ` -> `404`.
+  - `GET /delays?airline_code=ba` equals `GET /delays?airline_code=BA`.
+
+## Next agent must do
+
+- [ ] Implement the plan using TDD
+

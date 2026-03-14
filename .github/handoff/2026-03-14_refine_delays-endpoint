@@ -1,0 +1,62 @@
+# Refine Handoff: Delays list endpoints
+
+## Context & goal
+
+The API currently exposes only `/` and `/health`; Dev requested delay listing endpoints for all delays and filtered delays.
+Goal: define clear, testable API behavior for `GET /delays` with optional filters and deterministic success/error semantics.
+
+## Requirements
+
+### Must-have
+- Add `GET /delays` endpoint.
+- Support optional query parameters on `GET /delays`:
+  - `airline_code` (string, case-insensitive)
+  - `limit` (integer, fully optional)
+- Endpoint returns:
+  - `200 OK` when at least one record matches filters.
+  - `404 Not Found` when filters match zero records (including filtered requests).
+- Response body is a JSON object (not a raw array) and should remain consistent across successful responses.
+- OpenAPI docs must show query params and possible responses.
+
+### Nice-to-have
+- Include explicit API examples in docs/tests for:
+  - unfiltered call
+  - filtered call with both query params
+
+### Non-goals
+- No auth, pagination system, sorting options, or schema redesign beyond this endpoint contract.
+- No architectural refactor of existing app/router composition.
+
+## Constraints / Non-functional requirements
+- Keep behavior simple and deterministic (YAGNI).
+- Follow current FastAPI router/model patterns already used in `src/flight_delays_api/routers/` and `src/flight_delays_api/models/`.
+- Add/adjust tests under `tests/` to make acceptance criteria executable.
+
+## Assumptions
+- `404` means "no matching delay records" after applying filters.
+- `limit` is optional. When omitted, all matching records are returned.
+- `airline_code` matching is case-insensitive.
+- Because no explicit airline-code mapping exists in current data, `airline_code` is matched against the alphabetic prefix of `flight_number` (e.g., `BA456` -> `BA`).
+- Successful response object shape is assumed to be:
+  - `items`: array of matching delay records
+  - `count`: number of records in `items`
+- Invalid query parameter types continue to use FastAPI validation behavior (`422`) unless Dev overrides later.
+
+## Open questions / risks
+- Assumed `airline_code` mapping via `flight_number` prefix may differ from future domain rules.
+- `limit` bounds (min/max) are intentionally unspecified; if needed later, add explicit validation criteria.
+
+## Acceptance criteria
+
+1. `GET /delays` returns `200` with a JSON object containing `items` (array) and `count` (integer) when at least one matching record exists.
+2. `GET /delays` returns `404` when no delay records exist.
+3. `GET /delays?airline_code=AA&limit=50` applies a case-insensitive filter, applies `limit` when provided, and returns `200` with at most `50` items when matches exist.
+4. `GET /delays?airline_code=AA&limit=50` returns `404` when no records match.
+5. `GET /delays?airline_code=aa` and `GET /delays?airline_code=AA` produce equivalent filtering results.
+6. When `limit` is omitted, all matching records are returned.
+7. Query params and responses are documented in OpenAPI for `GET /delays`.
+8. Automated tests cover unfiltered and filtered requests for both `200` and `404` outcomes.
+
+## Next agent must do
+
+- [ ] Create an implementation plan
