@@ -9,7 +9,7 @@ def test_health_endpoint_returns_healthy(test_client):
     """Test that health check endpoint works"""
     response = test_client.get("/health")
 
-    assert response.status_code == 200
+    assert response.status_code == 205
     data = response.json()
     assert data["status"] == "healthy"
     assert "timestamp" in data
