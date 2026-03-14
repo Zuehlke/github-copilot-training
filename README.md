@@ -50,4 +50,33 @@ task
 ```
 
 ## Exercises
-The exercises will be available during the training.
+
+### LAB 1: Vibe Coding
+
+**Context:** We are going to build an application that displays flight delays. You are given an initial Python project that starts successfully but does not yet expose the required REST endpoints. Familiarize yourself with the repo using GitHub Copilot and implement the endpoints described below.
+
+**Task:** Implement the following endpoints:
+- `GET /delays` → returns 200 OK or 404 Not Found
+- `GET /delays/?airline_code=AA&limit=50` → returns 200 OK or 404 Not Found
+
+### LAB 2: Prompt Template
+
+**Context:** You will generate project documentation for this repository using the prepared `create-project-documentation` prompt template.
+
+**Task:** Create the documentation in chat using `/create-project-documentation`.
+
+### LAB 3: Setup IDE to increase the likelihood of acceptable output
+
+**Context:** In this exercise, you will configure your project so GitHub Copilot produces more consistent and probabilistic outputs. Your goal is to reduce ambiguity and improve output quality.
+
+**Task:**
+- Create a repository instruction file defining general behavior and constraints for Copilot in this repository
+- Add path-specific instruction files for python and testing
+- Implement the same endpoints again:
+  - `GET /delays` → returns 200 OK or 404 Not Found
+  - `GET /delays/?airline_code=AA&limit=50` → returns 200 OK or 404 Not Found
+
+**Files to create:**
+- `.github/copilot-instructions.md`
+- `.github/instructions/python.instructions.md`
+- `.github/instructions/testing.instructions.md`
