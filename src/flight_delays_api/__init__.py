@@ -8,7 +8,7 @@ import logging
 from fastapi import FastAPI
 
 from flight_delays_api.exceptions import setup_exception_handlers
-from flight_delays_api.routers import main_router
+from flight_delays_api.routers import delays_router, main_router
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -24,6 +24,7 @@ app = FastAPI(
 
 # Include routers
 app.include_router(main_router)
+app.include_router(delays_router)
 
 # Setup exception handlers
 setup_exception_handlers(app)
