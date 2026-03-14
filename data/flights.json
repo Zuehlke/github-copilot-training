@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "flight_number": "LX100",
+    "airline": "SWISS",
+    "scheduled_time": "2024-02-28T08:00:00",
+    "actual_time": "2024-02-28T08:15:00",
+    "status": "DELAYED",
+    "delay_minutes": 15,
+    "created_at": "2024-02-28T07:00:00"
+  },
+  {
+    "id": 2,
+    "flight_number": "BA456",
+    "airline": "BRITISH_AIRWAYS",
+    "scheduled_time": "2024-02-28T10:30:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T07:30:00"
+  },
+  {
+    "id": 3,
+    "flight_number": "AF789",
+    "airline": "AIR_FRANCE",
+    "scheduled_time": "2024-02-28T12:00:00",
+    "actual_time": null,
+    "status": "CANCELLED",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T08:00:00"
+  },
+  {
+    "id": 4,
+    "flight_number": "LH200",
+    "airline": "LUFTHANSA",
+    "scheduled_time": "2024-02-28T14:15:00",
+    "actual_time": "2024-02-28T14:45:00",
+    "status": "DELAYED",
+    "delay_minutes": 30,
+    "created_at": "2024-02-28T08:30:00"
+  },
+  {
+    "id": 5,
+    "flight_number": "KL301",
+    "airline": "KLM",
+    "scheduled_time": "2024-02-28T16:00:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T09:00:00"
+  },
+  {
+    "id": 6,
+    "flight_number": "UA220",
+    "airline": "UNITED",
+    "scheduled_time": "2024-02-28T17:30:00",
+    "actual_time": "2024-02-28T17:50:00",
+    "status": "DELAYED",
+    "delay_minutes": 20,
+    "created_at": "2024-02-28T09:30:00"
+  },
+  {
+    "id": 7,
+    "flight_number": "EK85",
+    "airline": "EMIRATES",
+    "scheduled_time": "2024-02-28T18:10:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T10:00:00"
+  },
+  {
+    "id": 8,
+    "flight_number": "QR95",
+    "airline": "QATAR_AIRWAYS",
+    "scheduled_time": "2024-02-28T19:45:00",
+    "actual_time": "2024-02-28T20:10:00",
+    "status": "DELAYED",
+    "delay_minutes": 25,
+    "created_at": "2024-02-28T10:15:00"
+  },
+  {
+    "id": 9,
+    "flight_number": "IB640",
+    "airline": "IBERIA",
+    "scheduled_time": "2024-02-28T20:30:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T10:30:00"
+  },
+  {
+    "id": 10,
+    "flight_number": "AZ510",
+    "airline": "ITA_AIRWAYS",
+    "scheduled_time": "2024-02-28T21:15:00",
+    "actual_time": null,
+    "status": "CANCELLED",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T10:45:00"
+  },
+  {
+    "id": 11,
+    "flight_number": "SN271",
+    "airline": "BRUSSELS_AIRLINES",
+    "scheduled_time": "2024-02-28T22:00:00",
+    "actual_time": "2024-02-28T22:05:00",
+    "status": "DELAYED",
+    "delay_minutes": 5,
+    "created_at": "2024-02-28T11:00:00"
+  },
+  {
+    "id": 12,
+    "flight_number": "OS412",
+    "airline": "AUSTRIAN",
+    "scheduled_time": "2024-02-28T22:30:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T11:15:00"
+  },
+  {
+    "id": 13,
+    "flight_number": "AY151",
+    "airline": "FINNAIR",
+    "scheduled_time": "2024-02-28T23:00:00",
+    "actual_time": "2024-02-28T23:35:00",
+    "status": "DELAYED",
+    "delay_minutes": 35,
+    "created_at": "2024-02-28T11:30:00"
+  },
+  {
+    "id": 14,
+    "flight_number": "TK190",
+    "airline": "TURKISH_AIRLINES",
+    "scheduled_time": "2024-02-28T23:20:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T11:45:00"
+  },
+  {
+    "id": 15,
+    "flight_number": "DL95",
+    "airline": "DELTA",
+    "scheduled_time": "2024-02-28T23:45:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T12:00:00"
+  },
+  {
+    "id": 16,
+    "flight_number": "AC880",
+    "airline": "AIR_CANADA",
+    "scheduled_time": "2024-02-29T00:15:00",
+    "actual_time": "2024-02-29T00:40:00",
+    "status": "DELAYED",
+    "delay_minutes": 25,
+    "created_at": "2024-02-28T12:15:00"
+  },
+  {
+    "id": 17,
+    "flight_number": "NH160",
+    "airline": "ANA",
+    "scheduled_time": "2024-02-29T01:00:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T12:30:00"
+  },
+  {
+    "id": 18,
+    "flight_number": "SQ345",
+    "airline": "SINGAPORE_AIRLINES",
+    "scheduled_time": "2024-02-29T01:30:00",
+    "actual_time": "2024-02-29T02:00:00",
+    "status": "DELAYED",
+    "delay_minutes": 30,
+    "created_at": "2024-02-28T12:45:00"
+  },
+  {
+    "id": 19,
+    "flight_number": "CX383",
+    "airline": "CATHAY_PACIFIC",
+    "scheduled_time": "2024-02-29T02:00:00",
+    "actual_time": null,
+    "status": "ON_TIME",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T13:00:00"
+  },
+  {
+    "id": 20,
+    "flight_number": "ET728",
+    "airline": "ETHIOPIAN",
+    "scheduled_time": "2024-02-29T02:45:00",
+    "actual_time": null,
+    "status": "CANCELLED",
+    "delay_minutes": null,
+    "created_at": "2024-02-28T13:15:00"
+  }
+]
