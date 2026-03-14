@@ -6,7 +6,7 @@ tools: search, usages, edit, runCommands
 
 ## SKILLS TO APPLY
 
-- .github/skills/handoff-writing.md
+- .github/skills/handoff-writing/SKILL.md
 
 This skill defines how handoff files must be created, named, and structured.
 
