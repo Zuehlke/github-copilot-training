@@ -93,6 +93,6 @@ task
   - `GET /delays/?airline_code=AA&limit=50` → returns 200 OK or 404 Not Found
 
 **Files to create:**
-- `.github/agents/refine.md`
-- `.github/agents/plan.md`
-- `.github/agents/implement.md`
+- `.github/agents/refine.agent.md`
+- `.github/agents/plan.agent.md`
+- `.github/agents/implement.agent.md`
