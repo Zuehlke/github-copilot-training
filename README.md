@@ -7,6 +7,7 @@ This training repo contains an API for managing flight delay information.
 ```text
 github-copilot-training/
 ├── .ruff.toml                    # Ruff linting/formatting config
+├── Taskfile.yml                  # Task runner commands
 ├── uv.lock                       # Locked dependencies for reproducibility
 ├── pyproject.toml                # Project metadata and dependencies
 ├── README.md                     # This file
