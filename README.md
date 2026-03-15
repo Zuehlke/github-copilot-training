@@ -55,8 +55,7 @@ task
 
 **Context:** We are going to build an application that displays flight delays. You are given an initial Python project that starts successfully but does not yet expose the required REST endpoints. Familiarize yourself with the repo using GitHub Copilot and implement the endpoints described below.
 
-**Task:** Implement the following endpoints:
-- `GET /delays` → returns 200 OK or 404 Not Found
+**Task:** Implement the following endpoint:
 - `GET /delays/?airline_code=AA&limit=50` → returns 200 OK or 404 Not Found
 
 ### LAB 2: Prompt Template
@@ -72,8 +71,7 @@ task
 **Task:**
 - Create a repository instruction file defining general behavior and constraints for Copilot in this repository
 - Add path-specific instruction files for python and testing
-- Implement the same endpoints again:
-  - `GET /delays` → returns 200 OK or 404 Not Found
+- Implement the same endpoint again:
   - `GET /delays/?airline_code=AA&limit=50` → returns 200 OK or 404 Not Found
 
 **Files to create:**
