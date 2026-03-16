@@ -76,5 +76,5 @@ task
 
 **Files to create:**
 - `.github/copilot-instructions.md`
-- `.github/instructions/python.instructions.md`
-- `.github/instructions/testing.instructions.md`
+- `.github/instructions/python/python.instructions.md`
+- `.github/instructions/testing/testing.instructions.md`
